@@ -1,0 +1,35 @@
+package com.data.demo;
+
+import com.data.model.ListNode;
+
+public class NodeDemo {
+    public static void main(String[] args){
+        NodeDemo demo = new NodeDemo();
+        ListNode head = new ListNode();
+        ListNode next1 = new ListNode();
+        ListNode next2 = new ListNode();
+        next2.setValue(2);
+        next2.setNext(null);
+        next1.setNext(next2);
+        next1.setValue(2);
+        head.setNext(next1);
+        head.setValue(1);
+        demo.reverseList(head);
+    }
+
+    /**
+     * 链表反转
+     * @param head
+     * @return
+     */
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.getNext() == null) {
+            return head;
+        }
+        ListNode next = head.getNext();
+        ListNode newHead = reverseList(next);
+        next.setNext(head);
+        head.setNext(null);
+        return newHead;
+    }
+}
